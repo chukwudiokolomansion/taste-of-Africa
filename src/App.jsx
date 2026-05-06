@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import CategoryListPage from "./pages/CategoryListPage";
 import CreateCategoryPage from "./pages/CreateCategoryPage";
-import FoodDetailsPage from "./pages/FoodDetailsPage";
+import CategoryDetailsPage from "./pages/CategoryDetailsPage";
 import EditCategoryPage from "./pages/EditCategoryPage";
 
 function App() {
@@ -18,12 +18,10 @@ function App() {
 
     <Routes>
       <Route path="/" element={ <HomePage /> } />
-      
-      <Route path="/category" element={<CategoryListPage />} />
-      <Route path="/category/:categoryId" element={<FoodDetailsPage />} />
-      
-      <Route exact path="/category/create" element={<CreateCategoryPage />} />
-      <Route path="/category/edit/:categoryId" element={ <EditCategoryPage /> } />
+      <Route path="/categories" element={<CategoryListPage />} />
+      <Route path="/categories/:categoryId" element={<CategoryDetailsPage />} />
+      <Route exact path="/categories/create" element={<CreateCategoryPage />} />
+      <Route path="/categories/edit/:categoryId" element={ <EditCategoryPage /> } />
 
       {/* error handling routes should be here */}
 
