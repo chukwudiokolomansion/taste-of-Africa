@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 function CategoryDetailsPage() {
 
   const { categoryId } = useParams();
+  const { foodId } = useParams();
   const navigate = useNavigate();
 
   const [category, setCategory] = useState(null);
@@ -19,7 +20,7 @@ function CategoryDetailsPage() {
     try {
 
       const response = await axios.get(
-        `http://localhost:5005/categories/${categoryId}`
+        `http://localhost:5005/categories/${categoryId}?_embed=foods`
       );
 
       console.log(response.data);
