@@ -7,27 +7,25 @@ function EditCategoryPage() {
 
   const navigate = useNavigate()
 
-  const { foodId } = useParams() 
+  const { categoryId } = useParams() 
   
-  const [formData, setFormData] = useState({
-    name: "",
-    imageUrl: "",
-    description: ""
-  });
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     getData()
   }, [])
 
+
   const getData = async() => {
 
     try {
       
-      const response = await axios.get( `http://localhost:5005/foods/${foodId}`)
+      const response = await axios.get( `http://localhost:5005/categories/${categoryId}`)
       
 
-      setFormData(response.data)
-      console.log(response.data)
+      setName(response.data.name)
+      setDescription(response.data.description)
       
 
     } catch (error) {
@@ -36,15 +34,20 @@ function EditCategoryPage() {
 
   }
 
- const handleSubmit = async (updatedFood) => {
-    try {
-      await axios.put(
-        `http://localhost:5005/foods/${foodId}`,
-        updatedFood
-      );
+ const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-      navigate(`/foods/${foodId}`);
-    
+    const body = {
+      name: name,
+      description: description
+    }
+
+     try {
+      // call the API here to edit one project...
+      const response = await axios.put(`http://localhost:5005/categories/${categoryId}`, body)
+
+      navigate(`/categories/${categoryId}`)
+      
     } catch (error) {
       console.log(error)
       //todo proper error handling here 
@@ -53,23 +56,42 @@ function EditCategoryPage() {
 
   const deleteCategory = async() => {
     try {
-      // call the API here to delete one food...
-      const response = await axios.delete(`http://localhost:5005/foods/${foodId}`)
-      navigate(`/foods/${foodId}`);
+      // call the API here to delete one task...
+      const response = await axios.delete(`http://localhost:5005/categories/${categoryId}`)
+
+      navigate("/categories")
     } catch (error) {
       console.log(error)
       //todo proper error handling here
     }
   }; 
 
+
+
   return (
     <div className="EditCategoryPage">
       <h3>Edit Food Category</h3>
 
-      <FoodForm
-        initialData={formData}
-        onSubmit={handleSubmit}
-      />
+       <form onSubmit={handleFormSubmit}>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <label>Description:</label>
+        <textarea
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+        <button type="submit">Update Category</button>
+      </form>
+
+      <button onClick={deleteCategory}>Delete Category</button>  
     </div>
   );
 }
