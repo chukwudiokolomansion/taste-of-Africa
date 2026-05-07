@@ -7,7 +7,7 @@ function CategoryCard (props) {
       <Link to={`/categories/${props.category.id}`}>
         <h3>{props.category.name}</h3>
       </Link>
-      <p>{props.category.description}</p>
+      <p>{props.category.description}</p> 
     </div>
   );
 }

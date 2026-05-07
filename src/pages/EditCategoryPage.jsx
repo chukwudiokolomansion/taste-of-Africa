@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
-import axios from "axios"; // used for calling the API
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import FoodForm from "../components/FoodForm";
 
 function EditCategoryPage() {
 
   const navigate = useNavigate()
 
-  const { categorId } = useParams() 
+  const { foodId } = useParams() 
   
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    imageUrl: "",
+    description: ""
+  });
 
   useEffect(() => {
     getData()
@@ -19,11 +23,12 @@ function EditCategoryPage() {
 
     try {
       
-      const response = await axios.get("http://localhost:5005/categories")
-      console.log(response.data)
+      const response = await axios.get( `http://localhost:5005/foods/${foodId}`)
+      
 
-      setName(response.data.name)
-      setDescription(response.data.description)
+      setFormData(response.data)
+      console.log(response.data)
+      
 
     } catch (error) {
       console.log(error)
@@ -31,20 +36,15 @@ function EditCategoryPage() {
 
   }
 
-  const handleFormSubmit = async(e) => {
-    e.preventDefault();
-
-    const body = {
-      name: name,
-      description: description
-    }
-
+ const handleSubmit = async (updatedFood) => {
     try {
-      // call the API here to edit one category...
-      const response = await axios.put("http://localhost:5005/categories", body)
+      await axios.put(
+        `http://localhost:5005/foods/${foodId}`,
+        updatedFood
+      );
 
-      navigate(`/categories/${categoryId}`)
-      
+      navigate(`/foods/${foodId}`);
+    
     } catch (error) {
       console.log(error)
       //todo proper error handling here 
@@ -54,8 +54,8 @@ function EditCategoryPage() {
   const deleteCategory = async() => {
     try {
       // call the API here to delete one food...
-      const response = await axios.delete("http://localhost:5005/categories")
-      navigate("/categories")
+      const response = await axios.delete(`http://localhost:5005/foods/${foodId}`)
+      navigate(`/foods/${foodId}`);
     } catch (error) {
       console.log(error)
       //todo proper error handling here
@@ -66,26 +66,10 @@ function EditCategoryPage() {
     <div className="EditCategoryPage">
       <h3>Edit Food Category</h3>
 
-      <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label>Description:</label>
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-
-        <button type="submit">Update Category</button>
-      </form>
-
-      <button onClick={deleteCategory}>Delete Category</button>      
+      <FoodForm
+        initialData={formData}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 }

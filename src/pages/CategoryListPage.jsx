@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; 
-import CategoryCard from "../components/CategoryCard";
+import FoodCard from "../components/FoodCard";
 
 function CategoryListPage() {
-  const [allCategories, setAllCategories] = useState(null);
+  const [foods, setFoods] = useState([]);
+
+
 
   useEffect(() => {
     getData();
@@ -15,24 +17,33 @@ function CategoryListPage() {
       // call the API here to receive all categories...
       const response = await axios.get("http://localhost:5005/categories");
       console.log(response.data);
-      setAllCategories(response.data);
+      setFoods(response.data);
    } catch (error) {
       console.log(error)
       //todo proper error handling here
     }
   };  
-  if (!allCategories) return <h3>Loading...</h3>; //todo proper loading animation here
+
+
+
+  if (!foods) return <h3>Loading...</h3>; //todo proper loading animation here
 
   return (
-    <div className="CategoryListPage">
+    <div className="page">
+    <h1>All African Foods</h1>
+
+
+
       <Link to="/categories/create">
         <button>Create food Category</button>
       </Link>
 
-      {/* ... for each category render one categoryCard */}
-      {allCategories.map((category) => {
-        return <CategoryCard key={category.id} category={category} />;
-      })}
+      <div className="grid">
+
+      {/* ... for each category render one Foodcard */}
+      
+    </div>
+
     </div>
   );
 }

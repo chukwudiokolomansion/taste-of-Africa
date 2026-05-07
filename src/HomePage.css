@@ -1,0 +1,55 @@
+.homepage {
+  }
+
+  .food-0 {
+    top: 5%;
+    left: 2%;
+  }
+
+  .food-1 {
+    top: 10%;
+    right: 2%;
+  }
+
+  .food-2 {
+    bottom: 8%;
+    left: 5%;
+  }
+
+  .food-3 {
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .food-4 {
+    top: 55%;
+    left: 0%;
+  }
+
+  .food-5 {
+    top: 60%;
+    right: 0%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero-content {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .food-img {
+    width: 80px;
+    height: 80px;
+  }
+}

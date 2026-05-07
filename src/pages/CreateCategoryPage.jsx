@@ -19,7 +19,7 @@ function CreateCategoryPage() {
     
     try {
       // call the API here to create one category...
-      const response = await axios.post("localhost:500/categories", body)
+      const response = await axios.post("http://localhost:5005/categories", body)
       console.log("new food category created!")
 
       navigate("/categories")
