@@ -32,7 +32,7 @@ function HomePage() {
           Explore the rich flavors, colors, and traditions of African cuisine.
         </p>
 
-        <button>Explore Foods</button>
+        
       </div>
 
     </div>
