@@ -27,7 +27,9 @@ function CategoryListPage() {
     }
   };  
 
-
+ const filteredCategories = allCategories.filter((category) =>
+    category.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   if (!allCategories) return <h3>Loading...</h3>; //todo proper loading animation here
 
@@ -39,17 +41,30 @@ function CategoryListPage() {
       <Link to="/categories/create">
       <button>Create food Category</button>
       </Link>
+  <br />
+      <br />
+
+      <input
+        type="text"
+        placeholder="Search categories..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
       <div className="grid">
 
-      {allCategories.map((category) => {
-        return <CategoryCard key={category.id} category={category}/>
-      })}
-      
-    </div>
+        {filteredCategories.map((category) => (
+          <CategoryCard
+            key={category.id}
+            category={category}
+          />
+        ))}
+
+      </div>
 
     </div>
   );
 }
+
 
 export default CategoryListPage;
