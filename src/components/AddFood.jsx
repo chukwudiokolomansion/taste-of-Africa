@@ -1,71 +1,81 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FoodForm from "../components/FoodForm";
 
 function AddFood(props) {
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    imageUrl: "",
-    description: "",
-    calories: "",
-    protein: "",
-    carbs: ""
-  });
-
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const body = {
-    name: props.name,
-    description: props.description,
-    categoryId: props.categoryId,
-    imageUrl: props.imageUrl,
-    calories: props.calories,
-    protein: props.protein,
-    carbs: props.carbs
-    }
-    console.log(body)
+      name,
+      imageUrl,
+      description,
+      categoryId: props.categoryId
+    };
+
+    console.log(body);
 
     try {
-      // call the API here to create one food...
-      // the ID of the Category should be part of the food data
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/foods`, formData)
-      console.log("new Food was created!")
-      props.getData() 
 
-       navigate("/foods");
+      await axios.post(
+        `${import.meta.env.VITE_SERVER_URL}/foods`,
+        body
+      );
 
-    
-    } catch (error) {
-      console.log(error)
+      console.log("New food was created!");
+
+      props.getData();
+
      
-    }
 
+    } catch (error) {
+      console.log(error);
+    }
   };
-  
+
   return (
     <div className="AddFood">
+
       <h3>Add New Food</h3>
-      
-     <FoodForm
-        formData={formData}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        buttonText="Create Food"
+
+      <form onSubmit={handleSubmit}>
+
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
+
+        <label>Description:</label>
+        <textarea
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+        <label>Image URL:</label>
+        <input
+          type="text"
+          name="imageUrl"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+
+        <button type="submit">
+          Add Food
+        </button>
+
+      </form>
+
     </div>
   );
 }

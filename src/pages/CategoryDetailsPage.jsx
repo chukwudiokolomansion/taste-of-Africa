@@ -1,14 +1,13 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import AddFood from "../components/AddFood";
 import FoodCard from "../components/FoodCard";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 function CategoryDetailsPage() {
 
   const { categoryId } = useParams();
-  const { foodId } = useParams();
-  const navigate = useNavigate();
 
   const [category, setCategory] = useState(null);
 
@@ -19,9 +18,9 @@ function CategoryDetailsPage() {
   const getData = async () => {
     try {
 
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}?_embed=foods`);
-        
-        console.log(response.data);
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}?_embed=foods`
+      );
 
       setCategory(response.data);
 
@@ -30,7 +29,23 @@ function CategoryDetailsPage() {
     }
   };
 
-  if (!category) return <h3>Loading...</h3>;
+  const deleteFood = async (foodId) => {
+    try {
+
+      await axios.delete(
+        `${import.meta.env.VITE_SERVER_URL}/foods/${foodId}`
+      );
+
+      getData();
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (!category) {
+    return <h3>Loading...</h3>;
+  }
 
   return (
     <div className="CategoryDetailsPage">
@@ -41,14 +56,17 @@ function CategoryDetailsPage() {
       </div>
 
       {category.foods &&
-        category.foods.map((food) => {
-          return (
-            <FoodCard
-              key={food.id}
-              food={food}
-            />
-          );
-        })}
+        category.foods.map((food) => (
+          <div key={food.id}>
+
+            <FoodCard food={food} />
+
+            <button onClick={() => deleteFood(food.id)}>
+              Delete Food
+            </button>
+
+          </div>
+        ))}
 
       <AddFood
         categoryId={category.id}
@@ -56,11 +74,11 @@ function CategoryDetailsPage() {
       />
 
       <Link to="/categories">
-        <button>Back to categories</button>
+        <button>Back to Categories</button>
       </Link>
 
       <Link to={`/categories/edit/${category.id}`}>
-        <button>Edit categories</button>
+        <button>Edit Category</button>
       </Link>
 
     </div>
