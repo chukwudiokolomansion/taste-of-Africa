@@ -19,11 +19,9 @@ function CategoryDetailsPage() {
   const getData = async () => {
     try {
 
-      const response = await axios.get(
-        `http://localhost:5005/categories/${categoryId}?_embed=foods`
-      );
-
-      console.log(response.data);
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}?_embed=foods`);
+        
+        console.log(response.data);
 
       setCategory(response.data);
 

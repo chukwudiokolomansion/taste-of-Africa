@@ -4,7 +4,8 @@ import axios from "axios";
 import CategoryCard from "../components/CategoryCard";
 
 function CategoryListPage() {
-  const [allCategories, setAllCategories] = useState(null);
+
+  const [allCategories, setAllCategories] = useState([]);
 
   const [search, setSearch] = useState("");
 
@@ -16,7 +17,7 @@ function CategoryListPage() {
   const getData = async () => {
     try {
       // call the API here to receive all categories...
-      const response = await axios.get("http://localhost:5005/categories");
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categories`);
       console.log(response.data);
       setAllCategories(response.data);
 
@@ -42,9 +43,7 @@ function CategoryListPage() {
       <div className="grid">
 
       {allCategories.map((category) => {
-        return (
-          <CategoryCard key={category.id} category={category} />
-        );
+        return <CategoryCard key={category.id} category={category}/>
       })}
       
     </div>

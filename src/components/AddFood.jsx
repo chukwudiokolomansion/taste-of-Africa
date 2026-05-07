@@ -42,7 +42,7 @@ function AddFood(props) {
     try {
       // call the API here to create one food...
       // the ID of the Category should be part of the food data
-      const response = await axios.post("http://localhost:5005/foods", formData)
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/foods`, formData)
       console.log("new Food was created!")
       props.getData() 
 

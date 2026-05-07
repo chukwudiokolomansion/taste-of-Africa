@@ -21,7 +21,7 @@ function EditCategoryPage() {
 
     try {
       
-      const response = await axios.get( `http://localhost:5005/categories/${categoryId}`)
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`)
       
 
       setName(response.data.name)
@@ -44,7 +44,7 @@ function EditCategoryPage() {
 
      try {
       // call the API here to edit one project...
-      const response = await axios.put(`http://localhost:5005/categories/${categoryId}`, body)
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`, body)
 
       navigate(`/categories/${categoryId}`)
       
@@ -57,7 +57,7 @@ function EditCategoryPage() {
   const deleteCategory = async() => {
     try {
       // call the API here to delete one task...
-      const response = await axios.delete(`http://localhost:5005/categories/${categoryId}`)
+      const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`)
 
       navigate("/categories")
     } catch (error) {

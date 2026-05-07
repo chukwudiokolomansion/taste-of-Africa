@@ -5,7 +5,6 @@ function Navbar() {
     <nav className="navbar">
       <h2>Taste of Africa</h2>
 
-      
       <div>
       <Link to="/"> <button>Home</button></Link>
       <Link to="/categories"><button>Food Categories</button></Link>
