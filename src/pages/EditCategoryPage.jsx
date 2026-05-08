@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../EditCategoryPage.css";
 
 function EditCategoryPage() {
 
@@ -65,32 +66,81 @@ function EditCategoryPage() {
     }
   }; 
 
+return (
 
+    <div className="edit-category-page">
 
-  return (
-    <div className="EditCategoryPage">
-      <h3>Edit Food Category</h3>
+      <div className="edit-category-card">
 
-       <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <h1 className="edit-title">
+          Edit Food Category
+        </h1>
 
-        <label>Description:</label>
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <p className="edit-paragraph">
+          Update category information, descriptions,
+          and manage your African food collections.
+        </p>
 
-        <button type="submit">Update Category</button>
-      </form>
+        <form
+          className="edit-form"
+          onSubmit={handleFormSubmit}
+        >
 
-      <button onClick={deleteCategory}>Delete Category</button>  
+          <div className="form-group">
+
+            <label>Name</label>
+
+            <input
+              type="text"
+              name="name"
+
+              placeholder="Enter category name"
+
+              value={name}
+
+              onChange={(e) =>
+                setName(e.target.value)
+              }
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>Description</label>
+
+            <textarea
+              name="description"
+
+              placeholder="Write category description..."
+
+              value={description}
+
+              onChange={(e) =>
+                setDescription(e.target.value)
+              }
+            />
+
+          </div>
+
+          <button
+            className="update-btn"
+            type="submit"
+          >
+            Update Category
+          </button>
+
+        </form>
+
+        <button
+          className="delete-btn"
+          onClick={deleteCategory}
+        >
+          Delete Category
+        </button>
+
+      </div>
+
     </div>
   );
 }

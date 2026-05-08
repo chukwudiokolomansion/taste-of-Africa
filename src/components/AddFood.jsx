@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../AddFood.css";
 
 function AddFood(props) {
 
@@ -40,37 +41,83 @@ function AddFood(props) {
     }
   };
 
-  return (
-    <div className="AddFood">
+ return (
+    <div className="add-food-container">
 
-      <h3>Add New Food</h3>
+      <h3 className="add-food-title">
+        Add New Food
+      </h3>
 
-      <form onSubmit={handleSubmit}>
+      <p className="add-food-paragraph">
+        Share delicious African meals, recipes,
+        and traditional dishes with beautiful images.
+      </p>
 
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <form
+        className="add-food-form"
+        onSubmit={handleSubmit}
+      >
 
-        <label>Description:</label>
-        <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className="form-group">
 
-        <label>Image URL:</label>
-        <input
-          type="text"
-          name="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
+          <label>Name</label>
 
-        <button type="submit">
+          <input
+            type="text"
+            name="name"
+
+            placeholder="Enter food name"
+
+            value={name}
+
+            onChange={(e) =>
+              setName(e.target.value)
+            }
+          />
+
+        </div>
+
+        <div className="form-group">
+
+          <label>Description</label>
+
+          <textarea
+            name="description"
+
+            placeholder="Describe the food..."
+
+            value={description}
+
+            onChange={(e) =>
+              setDescription(e.target.value)
+            }
+          />
+
+        </div>
+
+        <div className="form-group">
+
+          <label>Image URL</label>
+
+          <input
+            type="text"
+            name="imageUrl"
+
+            placeholder="Paste image URL"
+
+            value={imageUrl}
+
+            onChange={(e) =>
+              setImageUrl(e.target.value)
+            }
+          />
+
+        </div>
+
+        <button
+          className="submit-btn"
+          type="submit"
+        >
           Add Food
         </button>
 
@@ -79,5 +126,6 @@ function AddFood(props) {
     </div>
   );
 }
+
 
 export default AddFood;
