@@ -2,11 +2,11 @@ import "../HomePage.css";
 
 function HomePage() {
   const foods = [
-    "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop",
+    "https://images.squarespace-cdn.com/content/v1/614f831e90f08045038b4dae/9a18e8d0-efc6-4ca6-aa4c-656f7d53cd4e/Recipe-for-Egusi-Soup.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGVa9RtKua0S5NQ3O_mHC7tG1V0xyX3UhEPw&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs4xCvZKO9hUdfOTrWlif4F2nVWgB6-uhKBw&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
     "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200&auto=format&fit=crop",
   ];
   const movingFoods = foods.map((food, index) => ({
