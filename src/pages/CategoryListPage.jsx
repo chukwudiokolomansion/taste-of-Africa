@@ -32,7 +32,22 @@ function CategoryListPage() {
     category.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (!allCategories) return <h3>Loading...</h3>; //todo proper loading animation here
+  if (!allCategories) 
+    return (
+    <div className="loader-container">
+
+      <ClipLoader
+        color="#ffbe0b"
+        size={90}
+        speedMultiplier={1}
+      />
+
+      <p className="loading-text">
+        Loading delicious African foods...
+      </p>
+
+    </div>
+  );
 
  return (
     <div className="category-page">

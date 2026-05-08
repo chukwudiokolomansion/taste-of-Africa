@@ -248,3 +248,60 @@
   }
 
 }
+.loader-container {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 1.5rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e293b,
+      #1d4ed8
+    );
+}
+
+.loading-text {
+  font-size: 1.3rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff6b35,
+      #ffd166,
+      #06d6a0,
+      #ff006e
+    );
+
+  background-size: 300% auto;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation:
+    shine 5s linear infinite;
+}
+
+@keyframes shine {
+
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 300% center;
+  }
+
+}

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
 import AddFood from "../components/AddFood";
 import FoodCard from "../components/FoodCard";
@@ -45,9 +46,18 @@ function CategoryDetailsPage() {
   };
 
   if (!category) {
-    return <h3>Loading...</h3>;
-  }
+    return (
+    <div className="loader-container">
 
+     <HashLoader color="#ff6b35" size={90} />
+
+      <p className="loading-text">
+        Loading delicious African foods...
+      </p>
+
+    </div>
+  );
+}
  return (
     <div className="category-details-page">
 
