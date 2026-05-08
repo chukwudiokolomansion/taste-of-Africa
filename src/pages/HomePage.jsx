@@ -2,12 +2,13 @@ import "../HomePage.css";
 
 function HomePage() {
   const foods = [
-    "https://images.squarespace-cdn.com/content/v1/614f831e90f08045038b4dae/9a18e8d0-efc6-4ca6-aa4c-656f7d53cd4e/Recipe-for-Egusi-Soup.png",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGVa9RtKua0S5NQ3O_mHC7tG1V0xyX3UhEPw&s",
+    "https://www.omalichakitchen.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fokra-soup.d8380937.jpg&w=1080&q=75",
+    "https://niyis.co.uk/cdn/shop/articles/NIGERIAN_JOLLOF_RICE_b3b0b496-fdc8-4d6e-aca5-86729d12cb78.jpg?v=1766069341",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs4xCvZKO9hUdfOTrWlif4F2nVWgB6-uhKBw&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSQXWgvhXXn52Kmb3lFWrdd3R_89nzSFOOvA&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGVa9RtKua0S5NQ3O_mHC7tG1V0xyX3UhEPw&s",
+    
   ];
   const movingFoods = foods.map((food, index) => ({
     image: food,
@@ -68,12 +69,11 @@ function HomePage() {
             </div>
 
             <div className="glass-card small-card logo-card">
-              <h2>Taste of Africa</h2>
+              <img src={foods[3]} alt="African dish" />
             </div>
 
-            <div className="glass-card small-card text-card">
-              <h3>Traditional Flavors</h3>
-              <p>Experience delicious African meals and local delicacies.</p>
+            <div className="glass-card small-card logo-card">
+              <img src={foods[5]} alt="African dish" />
             </div>
           </div>
         </div>
