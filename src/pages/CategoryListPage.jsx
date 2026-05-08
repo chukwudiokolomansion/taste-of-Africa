@@ -9,7 +9,7 @@ function CategoryListPage() {
 
   const [allCategories, setAllCategories] = useState([]);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(null);
 
 
   useEffect(() => {
