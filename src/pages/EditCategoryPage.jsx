@@ -4,143 +4,123 @@ import axios from "axios";
 import "../EditCategoryPage.css";
 
 function EditCategoryPage() {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const { categoryId } = useParams();
 
-  const { categoryId } = useParams() 
-  
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
-
-  const getData = async() => {
-
+  const getData = async () => {
     try {
-      
-      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`)
-      
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`,
+      );
 
-      setName(response.data.name)
-      setDescription(response.data.description)
-      
-
+      setName(response.data.name);
+      setDescription(response.data.description);
+      setImageUrl(response.data.imageUrl);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
+  };
 
-  }
-
- const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     const body = {
       name: name,
-      description: description
-    }
+      description: description,
+      imageUrl: imageUrl,
+    };
 
-     try {
+    try {
       // call the API here to edit one project...
-      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`, body)
+      const response = await axios.put(
+        `${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`,
+        body,
+      );
 
-      navigate(`/categories/${categoryId}`)
-      
+      navigate(`/categories/${categoryId}`);
     } catch (error) {
-      console.log(error)
-      //todo proper error handling here 
+      console.log(error);
+      //todo proper error handling here
     }
   };
 
-  const deleteCategory = async() => {
+  const deleteCategory = async () => {
     try {
       // call the API here to delete one task...
-      const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`)
+      const response = await axios.delete(
+        `${import.meta.env.VITE_SERVER_URL}/categories/${categoryId}`,
+      );
 
-      navigate("/categories")
+      navigate("/categories");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       //todo proper error handling here
     }
-  }; 
+  };
 
-return (
-
+  return (
     <div className="edit-category-page">
-
       <div className="edit-category-card">
-
-        <h1 className="edit-title">
-          Edit Food Category
-        </h1>
+        <h1 className="edit-title">Edit Food Category</h1>
 
         <p className="edit-paragraph">
-          Update category information, descriptions,
-          and manage your African food collections.
+          Update category information, descriptions, and manage your African
+          food collections.
         </p>
 
-        <form
-          className="edit-form"
-          onSubmit={handleFormSubmit}
-        >
-
+        <form className="edit-form" onSubmit={handleFormSubmit}>
           <div className="form-group">
-
             <label>Name</label>
 
             <input
               type="text"
               name="name"
-
               placeholder="Enter category name"
-
               value={name}
-
-              onChange={(e) =>
-                setName(e.target.value)
-              }
+              onChange={(e) => setName(e.target.value)}
             />
-
           </div>
 
           <div className="form-group">
-
             <label>Description</label>
 
             <textarea
               name="description"
-
               placeholder="Write category description..."
-
               value={description}
-
-              onChange={(e) =>
-                setDescription(e.target.value)
-              }
+              onChange={(e) => setDescription(e.target.value)}
             />
-
           </div>
 
-          <button
-            className="update-btn"
-            type="submit"
-          >
+          <div className="form-group">
+            <label>Image URL</label>
+
+            <input
+              type="text"
+              name="imageUrl"
+              placeholder="Paste image URL"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+          </div>
+          <button className="update-btn" type="submit">
             Update Category
           </button>
-
         </form>
 
-        <button
-          className="delete-btn"
-          onClick={deleteCategory}
-        >
+        <button className="delete-btn" onClick={deleteCategory}>
           Delete Category
         </button>
-
       </div>
-
     </div>
   );
 }
