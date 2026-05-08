@@ -173,9 +173,13 @@ body {
 }
 
 .overlay-content h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
   font-weight: 800;
+  text-align: center;
+  word-wrap: break-word;
+
   background: linear-gradient(
     90deg,
     #ff6b35,
@@ -185,11 +189,16 @@ body {
     #ffbe0b,
     #fb5607
   );
+
   background-size: 300% auto;
+  background-clip: text;
   -webkit-background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
   animation: shine 6s linear infinite;
   text-shadow: 0 0 30px rgba(255, 190, 11, 0.25);
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .overlay-content p {

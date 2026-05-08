@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"; 
 import CategoryCard from "../components/CategoryCard";
 import "../CategoryListPage.css";
+import { HashLoader } from "react-spinners";
 
 function CategoryListPage() {
 
@@ -35,12 +36,8 @@ function CategoryListPage() {
   if (!allCategories) 
     return (
     <div className="loader-container">
+     <HashLoader color="#ff6b35" size={90} />
 
-      <ClipLoader
-        color="#ffbe0b"
-        size={90}
-        speedMultiplier={1}
-      />
 
       <p className="loading-text">
         Loading delicious African foods...

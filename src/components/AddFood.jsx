@@ -26,15 +26,13 @@ function AddFood(props) {
     try {
 
       await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/foods`,
-        body
-      );
-
+        `${import.meta.env.VITE_SERVER_URL}/foods`, body);
       console.log("New food was created!");
 
       props.getData();
 
      
+      navigate("/categories");
 
     } catch (error) {
       console.log(error);

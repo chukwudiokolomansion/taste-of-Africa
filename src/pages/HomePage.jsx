@@ -7,7 +7,7 @@ function HomePage() {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs4xCvZKO9hUdfOTrWlif4F2nVWgB6-uhKBw&s",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&shttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8COx6qqwnZt5-PDbvbL_U3AjdZT3RF-KyAQ&s",
-    "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200&auto=format&fit=crop",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSQXWgvhXXn52Kmb3lFWrdd3R_89nzSFOOvA&s",
   ];
   const movingFoods = foods.map((food, index) => ({
     image: food,
