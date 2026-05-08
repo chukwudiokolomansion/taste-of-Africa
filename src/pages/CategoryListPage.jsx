@@ -9,7 +9,7 @@ function CategoryListPage() {
 
   const [allCategories, setAllCategories] = useState([]);
 
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
 
 
   useEffect(() => {
@@ -33,16 +33,13 @@ function CategoryListPage() {
     category.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (!allCategories) 
-    return (
+if (allCategories.length === 0)
+  return (
     <div className="loader-container">
-     <HashLoader color="#ff6b35" size={90} />
-
-
+      <HashLoader color="#ff6b35" size={90} />
       <p className="loading-text">
         Loading delicious African foods...
       </p>
-
     </div>
   );
 
