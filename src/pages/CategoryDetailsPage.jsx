@@ -5,6 +5,7 @@ import axios from "axios";
 import AddFood from "../components/AddFood";
 import FoodCard from "../components/FoodCard";
 
+import "../CategoryDetailsPage.css";
 function CategoryDetailsPage() {
 
   const { categoryId } = useParams();
@@ -47,39 +48,74 @@ function CategoryDetailsPage() {
     return <h3>Loading...</h3>;
   }
 
-  return (
-    <div className="CategoryDetailsPage">
+ return (
+    <div className="category-details-page">
 
-      <div>
-        <h1>{category.name}</h1>
-        <p>{category.description}</p>
+      <div className="category-header">
+
+        <h1 className="category-title">
+          {category.name}
+        </h1>
+
+        <p className="category-description">
+          {category.description}
+        </p>
+
       </div>
 
-      {category.foods &&
-        category.foods.map((food) => (
-          <div key={food.id}>
+      <div className="foods-grid">
 
-            <FoodCard food={food} />
+        {category.foods &&
+          category.foods.map((food) => (
 
-            <button onClick={() => deleteFood(food.id)}>
-              Delete Food
-            </button>
+            <div
+              key={food.id}
+              className="food-wrapper"
+            >
 
-          </div>
-        ))}
+              <FoodCard food={food} />
 
-      <AddFood
-        categoryId={category.id}
-        getData={getData}
-      />
+              <button
+                className="delete-btn"
+                onClick={() => deleteFood(food.id)}
+              >
+                Delete Food
+              </button>
 
-      <Link to="/categories">
-        <button>Back to Categories</button>
-      </Link>
+            </div>
 
-      <Link to={`/categories/edit/${category.id}`}>
-        <button>Edit Category</button>
-      </Link>
+          ))}
+
+      </div>
+
+      <div className="add-food-section">
+
+        <AddFood
+          categoryId={category.id}
+          getData={getData}
+        />
+
+      </div>
+
+      <div className="bottom-buttons">
+
+        <Link to="/categories">
+
+          <button className="nav-btn">
+            Back to Categories
+          </button>
+
+        </Link>
+
+        <Link to={`/categories/edit/${category.id}`}>
+
+          <button className="edit-btn">
+            Edit Category
+          </button>
+
+        </Link>
+
+      </div>
 
     </div>
   );

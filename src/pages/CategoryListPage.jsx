@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"; 
 import CategoryCard from "../components/CategoryCard";
+import "../CategoryListPage.css";
 
 function CategoryListPage() {
 
@@ -33,31 +34,59 @@ function CategoryListPage() {
 
   if (!allCategories) return <h3>Loading...</h3>; //todo proper loading animation here
 
-  return (
-    <div className="CategoryListPage">
+ return (
+    <div className="category-page">
 
-    <h1>All African Foods</h1>
+      <h1 className="category-heading">
+        Categories of African Foods
+      </h1>
 
-      <Link to="/categories/create">
-      <button>Create food Category</button>
-      </Link>
-  <br />
-      <br />
+      <p className="category-paragraph">
+        Explore the beauty of African cuisine through
+        rich flavors, colorful dishes, traditional meals,
+        and unforgettable culinary experiences from
+        across the continent.
+      </p>
 
-      <input
-        type="text"
-        placeholder="Search categories..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="top-bar">
 
-      <div className="grid">
+        <Link to="/categories/create">
+
+          <button className="create-btn">
+            Create Food Category
+          </button>
+
+        </Link>
+
+        <input
+          className="search-input"
+
+          type="text"
+
+          placeholder="Search categories..."
+
+          value={search}
+
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
+        />
+
+      </div>
+
+      <p className="filter-text">
+        Showing {filteredCategories.length} categories
+      </p>
+
+      <div className="category-grid">
 
         {filteredCategories.map((category) => (
+
           <CategoryCard
             key={category.id}
             category={category}
           />
+
         ))}
 
       </div>
@@ -65,6 +94,5 @@ function CategoryListPage() {
     </div>
   );
 }
-
 
 export default CategoryListPage;
